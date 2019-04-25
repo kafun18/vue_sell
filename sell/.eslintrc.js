@@ -28,6 +28,8 @@ module.exports = {
     // 规则加分号
     'semi':['error','always'],
     // 缩进规则
-    'indent':0
+    'indent':0,
+    //function 规则
+    'space-before-function-paren':0
   }
 };

@@ -1,27 +1,27 @@
-'use strict'
-const utils = require('./utils')
-const webpack = require('webpack')
-const config = require('../config')
-const merge = require('webpack-merge')
-const path = require('path')
-const baseWebpackConfig = require('./webpack.base.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const portfinder = require('portfinder')
+'use strict';
+const utils = require('./utils');
+const webpack = require('webpack');
+const config = require('../config');
+const merge = require('webpack-merge');
+const path = require('path');
+const baseWebpackConfig = require('./webpack.base.conf');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const portfinder = require('portfinder');
 
 //配置接口返回json数据
-const express = require('express')
-const app = express()
-var appData = require('../data.json')
-var seller = appData.seller
-var goods = appData.goods
-var ratings = appData.ratings
-var apiRoutes = express.Router()
+const express = require('express');
+const app = express();
+var appData = require('../data.json');
+var seller = appData.seller;
+var goods = appData.goods;
+var ratings = appData.ratings;
+var apiRoutes = express.Router();
 app.use('/api', apiRoutes);
 
 const HOST = process.env.HOST
-const PORT = process.env.PORT && Number(process.env.PORT)
+const PORT = process.env.PORT && Number(process.env.PORT);
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -61,21 +61,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           data: appData
         })
       }),
-    
+
     app.get('/api/seller', (req, res) =>{
       res.json({
         errno: 0,
         data: seller
       })
     }),
-    
+
     app.get('/api/goods', (req, res) =>{
       res.json({
         errno: 0,
         data: goods
       })
     }),
-    
+
     app.get('/api/ratings', (req, res) =>{
       res.json({
         errno: 0,
@@ -106,7 +106,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }
     ])
   ]
-})
+});
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
@@ -132,4 +132,4 @@ module.exports = new Promise((resolve, reject) => {
       resolve(devWebpackConfig)
     }
   })
-})
+});
