@@ -1,7 +1,5 @@
 <template>
-  <div class="header">
-    我是header
-  </div>
+<div>i am goods</div>
 </template>
 
 <script type="text/ecmascript-6">
